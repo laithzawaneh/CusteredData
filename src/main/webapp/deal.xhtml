@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Deal Form</title>
+</h:head>
+<body style="margin: 0; padding: 0;">
+	<div id="header"
+		style="color: white; background: #cc0000; text-align: center; height: 50px; width: 100%; margin: 0; padding: 0;">
+		<h2 style="padding: 10px; margin: 0; height: 30px">FX Deals</h2>
+	</div>
+
+	<div align="center">
+		<h:form id="form" style="margin-top:200px;">
+			<p:growl showDetail="true">
+				<p:autoUpdate />
+			</p:growl>
+
+			<p:panelGrid columns="2" style="text-align: left;">
+				<f:facet name="header">
+					<h:outputText value="Add New Deal" />
+				</f:facet>
+
+				<p:outputLabel for="FromCurrency" value="From Currency : " />
+				<p:selectOneMenu id="FromCurrency"
+					value="#{mbDeal.dealEntity.fromCurrency}">
+					<f:selectItem itemLabel="Select From Currency" itemValue="" />
+					<f:selectItems value="#{mbDeal.currencyCodes}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="ToCurrency" value="To Currency : " />
+				<p:selectOneMenu id="ToCurrency"
+					value="#{mbDeal.dealEntity.toCurrency}">
+					<f:selectItem itemLabel="Select TO Currency" itemValue="" />
+					<f:selectItems value="#{mbDeal.currencyCodes}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Deal Amount:" />
+				<p:inputText value="#{mbDeal.dealEntity.dealAmount}"
+					required="false" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Save In Database" action="#{mbDeal.save()}"
+						ajax="false" />
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+	</div>
+</body>
+</html>
